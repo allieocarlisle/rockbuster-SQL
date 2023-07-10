@@ -1,0 +1,25 @@
+SELECT
+  D.country,
+  C.city,
+  COUNT(customer_id) AS "count of customers"
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON C.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+    WHERE country IN ('India', 'China', 'United States', 'Japan', 'Mexico', 'Brazil', 'Russian Federation', 'Philippines', 'Turkey', 'Indonesia')
+GROUP BY country, city
+ORDER BY COUNT(customer_id) DESC
+LIMIT 10
+
+--
+
+SELECT
+    D.country,
+    COUNT(customer_id) AS "count of customers"
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_ID = D.country_ID
+GROUP BY country
+ORDER BY COUNT(customer_id) DESC
+LIMIT 10
